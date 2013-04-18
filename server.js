@@ -24,6 +24,7 @@ app.use(dispatch({
     res.setHeader('Content-Type', 'text/html');
     var query = url.parse(req.url, true).query.search
     fetchCompanySummary(query, function(err, data) {
+      // TODO:  API error handling
       if (err !== null) return next(err);
       res.end(data);
     });
@@ -79,7 +80,7 @@ css = (function() {
 
 js = (function() {
   var allJs = '';
-  var files = ['javascripts/jquery.min.js', 'javascripts/underscore.js', 'javascripts/backbone.js'];
+  var files = ['javascripts/jquery.min.js', 'javascripts/underscore.js', 'javascripts/backbone.js', 'client.js'];
   for (var i in files) {
     allJs += fs.readFileSync(files[i], 'utf8');
   };
