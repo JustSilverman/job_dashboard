@@ -1,0 +1,89 @@
+/* colors
+  #495F5F
+  #8BA663
+  #F2D16D
+  #699889
+  #733924
+*/
+
+
+.container.row {
+  max-width: 80em;
+  padding-top: 1em;
+}
+
+.main-column {
+  min-height: 60em;
+  border-right: 1px solid #bbb;
+}
+
+.main-column:first-child {
+  border-left: 1px solid #bbb;
+}
+
+.column-title {
+  color: #fff;
+  height: 3em;
+  text-align: center;
+  line-height: 3em;
+  margin-bottom: 1em;
+}
+
+.column-title.companies {
+  background: #495F5F;
+}
+
+.column-title.jobs {
+  background: #699889;
+}
+
+.column-title.search {
+  background: #8BA663;
+}
+
+.company-card {
+  background-image: url('furley_bg.png');
+  max-width: 60em;
+  padding: 0.5em 0.5em;
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.25);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 255, 0.25);
+     -moz-box-shadow: 0 0 5px rgba(0, 0, 255, 0.25);
+}
+
+.company-card .title {
+  display: inline-block;
+  margin: 0;
+}
+
+.company-card .title a {
+  color: #333;
+}
+
+.company-card .pull-right {
+  max-width: 3em;
+  display: inline-block;
+  float: right;
+  text-align: center;
+}
+
+.company-card .image {
+  size: 4em;
+}
+
+.company-card .jobs-link {
+  font-size: 0.6em;
+}
+
+.company-card .location {
+  display: block;
+  margin: 0.25em 0 0 0.75em;
+  color: #aaa;
+  font-size: 0.75em;
+  font-style: italic;
+}
+
+.company-card .industry {
+  margin: 1em 0 0 0;
+  display: inline-block;
+  font-size: 0.8em;
+}

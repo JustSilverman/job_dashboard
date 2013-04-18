@@ -4,6 +4,8 @@ connect  = require('connect');
 app      = connect();
 dispatch = require('dispatch');
 
+app.use(connect.static(__dirname + '/images'));
+
 app.use(dispatch({
   'GET /' : function(req, res, next) {
     res.setHeader('Content-Type', 'text/html');
@@ -14,10 +16,27 @@ app.use(dispatch({
   }
 }));
 
+app.use(dispatch({
+  'GET /app.css' : function(req, res, next) {
+    res.setHeader('Content-Type', 'text/css');
+    res.end(css);
+  }
+}));
+
+
 template = fs.readFileSync('dashboard.html');
 function renderUI(cb) {
   return cb(noErr, template);
 }
+
+css = (function catCSS() {
+  var allCss = '';
+  var files = ['stylesheets/normalize.css', 'stylesheets/custom.css', 'stylesheets/foundation.css'];
+  for (var i in files) {
+    allCss += fs.readFileSync(files[i], 'utf8');
+  };
+  return allCss;
+})();
 
 port   = process.env.PORT != null ? process.env.PORT : 4000;
 server = http.createServer(app);
