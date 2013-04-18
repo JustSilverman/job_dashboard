@@ -77,7 +77,6 @@ function fetchCompanySummary(query, cb) {
   }).on('error', function(err) {
     return cb(err);
   });
-
 }
 
 css = (function catCSS() {

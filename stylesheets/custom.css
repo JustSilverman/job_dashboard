@@ -41,6 +41,7 @@
   background: #8BA663;
 }
 
+/* company card styling */
 .company-card {
   background-image: url('furley_bg.png');
   max-width: 60em;
@@ -87,3 +88,49 @@
   display: inline-block;
   font-size: 0.8em;
 }
+
+/* search card styling */
+.search-card {
+  background-image: url('furley_bg.png');
+  max-width: 60em;
+  padding: 0.2em;
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.25);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 255, 0.25);
+     -moz-box-shadow: 0 0 5px rgba(0, 0, 255, 0.25);
+}
+
+.search-card .pull-left {
+  max-width: 1.75em;
+  display: inline-block;
+  float: left;
+  text-align: center;
+  margin: 0;
+}
+
+.search-card .title {
+  min-height: 3em;
+  margin: auto 0;
+  font-size: 0.65em;
+}
+
+.search-card .title a {
+  display: inline-block;
+  margin: 0 0 0 3em;
+  color: #333;
+  font-size: 0.9em;
+  line-height: 3em;
+}
+
+.search-card .subheader {
+  float: right;
+  margin: 0 0.5em 0 0;
+  font-size: 0.75em;
+  line-height: 3em;
+}
+
+.search-card .image {
+  margin: auto;
+  size: 1.75em;
+}
+
+
