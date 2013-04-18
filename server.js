@@ -38,20 +38,9 @@ app.use(dispatch({
 }));
 
 app.use(dispatch({
-  'GET /jquery.js' : function(req, res, next) {
-    send(req, 'javascripts/jquery.min.js').pipe(res);
-  }
-}));
-
-app.use(dispatch({
   'GET /app.js' : function(req, res, next) {
-    send(req, 'javascripts/app.js').pipe(res);
-  }
-}));
-
-app.use(dispatch({
-  'GET /jquery.js' : function(req, res, next) {
-    send(req, 'javascripts/jquery.min.js').pipe(res);
+    res.setHeader('Content-Type', 'text/css');
+    res.end(js);
   }
 }));
 
@@ -79,13 +68,22 @@ function fetchCompanySummary(query, cb) {
   });
 }
 
-css = (function catCSS() {
+css = (function() {
   var allCss = '';
   var files = ['stylesheets/normalize.css', 'stylesheets/custom.css', 'stylesheets/foundation.css'];
   for (var i in files) {
     allCss += fs.readFileSync(files[i], 'utf8');
   };
   return allCss;
+})();
+
+js = (function() {
+  var allJs = '';
+  var files = ['javascripts/jquery.min.js', 'javascripts/underscore.js', 'javascripts/backbone.js'];
+  for (var i in files) {
+    allJs += fs.readFileSync(files[i], 'utf8');
+  };
+  return allJs;
 })();
 
 port   = process.env.PORT != null ? process.env.PORT : 4000;
