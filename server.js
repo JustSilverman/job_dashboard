@@ -80,7 +80,11 @@ css = (function() {
 
 js = (function() {
   var allJs = '';
-  var files = ['javascripts/jquery.min.js', 'javascripts/underscore.js', 'javascripts/backbone.js', 'client.js'];
+  var files = ['javascripts/jquery.min.js',
+               'javascripts/underscore.js',
+               'javascripts/backbone.js',
+               'javascripts/templates.js',
+               'client.js'];
   for (var i in files) {
     allJs += fs.readFileSync(files[i], 'utf8');
   };

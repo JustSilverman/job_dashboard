@@ -94,9 +94,7 @@
   background-image: url('furley_bg.png');
   max-width: 60em;
   padding: 0.2em;
-  box-shadow: 0 0 5px rgba(0, 0, 255, 0.25);
-  -webkit-box-shadow: 0 0 5px rgba(0, 0, 255, 0.25);
-     -moz-box-shadow: 0 0 5px rgba(0, 0, 255, 0.25);
+  margin: 0.5em;
 }
 
 .search-card .pull-left {

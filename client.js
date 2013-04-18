@@ -1,3 +1,32 @@
+var searchResults = Backbone.View.extend({
+  noResultsMsg: "No results found",
+
+  initialize: function() {
+    this.listenTo(this.collection, "reset", this.render);
+    this.listenTo(this.collection, "empty", this.clearView);
+  },
+
+  render: function() {
+    this.clearView();
+    if (this.collection.length === 0) {
+      this.$el.append("<div class='search-card'>" + this.noResultsMsg + "</div>");
+    } else {
+      for (var i in this.collection.models) {
+        this.renderResult(this.collection.models[i].attributes);
+      }
+    }
+    return this;
+  },
+
+  renderResult: function(searchResult) {
+    this.$el.append(_.template(searchCard, searchResult));
+  },
+
+  clearView: function() {
+    this.$el.children('.search-card').remove();
+  }
+});
+
 var searchForm = Backbone.View.extend({
   events: {
     "keyup":  "updateModel",
@@ -26,7 +55,7 @@ var searchForm = Backbone.View.extend({
         self.collection.reset(JSON.parse(data));
       },
       error: function(xhr, status, error) {
-        this.displayError(error);
+        self.displayError(error);
       },
     });
   },
@@ -43,7 +72,7 @@ var searchForm = Backbone.View.extend({
   },
 
   textFieldVal: function() {
-    return this.$el.children('.text-field').val();
+    return this.$el.children('.text-field').val().trim();
   },
 
   displayError: function(message) {
@@ -56,6 +85,8 @@ $(document).ready(function(){
   var resultsCollection = new Backbone.Collection();
   var formView = new searchForm({el: $('.al-company-form'),
                          collection: resultsCollection});
+  var resultsView = new searchResults({el: $('.al-summary-results'),
+                               collection: resultsCollection});
 
   $('.loading').hide();
   $('.loaded').show();
