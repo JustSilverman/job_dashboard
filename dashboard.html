@@ -3,8 +3,47 @@
 <head>
 </head>
   <body>
-    <div class="loading">
+    <div class="loading" style="display: none;">
       Loading...
+    </div>
+    <div class="loaded">
+      <div class="container row">
+        <div class="large-4 columns main-column">
+          <div class="column-title companies">
+            COMPANIES
+          </div>
+          <div class="company-card">
+            <div class="pull-right">
+              <a href="http://www.google.com">
+                <img class="image" src="https://s3.amazonaws.com/photos.angel.co/startups/i/21180-f2d687c33d14ab7b6f42c284ac7732fd-thumb_jpg.jpg?buster=1343247383"/>
+              </a>
+              <a class="jobs-link" href="www.google.com">
+                View jobs
+              </a>
+            </div>
+            <h6 class="title">
+              <a href="http:www.google.com">VANDELAY INDUSTRIES</a>
+            </h6>
+            <span class="location">San Francisco, CA</span>
+            <span class="industry">Logistics and Shipping</span>
+          </div>
+        </div>
+        <div class="large-4 columns main-column">
+          <div class="column-title jobs">
+            JOBS
+          </div>
+        </div>
+        <div class="large-4 columns main-column">
+          <div class="column-title search">
+            ADD TO MY STASH
+          </div>
+          <form class="al-company-form" method="get" action="/al/companies/search">
+            <input class="text-field" type="text"   name="search_terms" placeholder="Search for companies"/>
+          </form>
+          <ul class="al-summary-results">
+          </ul>
+        </div>
+      </div>
     </div>
   </body>
 </html>
