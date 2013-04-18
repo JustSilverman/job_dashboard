@@ -1,4 +1,4 @@
 serve:
-	node dashboard.js
+	node server.js
 
 .PHONY: serve
