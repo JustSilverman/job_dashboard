@@ -38,6 +38,12 @@ app.use(dispatch({
 }));
 
 app.use(dispatch({
+  'GET /jquery.js' : function(req, res, next) {
+    send(req, 'javascripts/jquery.min.js').pipe(res);
+  }
+}));
+
+app.use(dispatch({
   'GET /app.js' : function(req, res, next) {
     send(req, 'javascripts/app.js').pipe(res);
   }
