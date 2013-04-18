@@ -3,8 +3,10 @@ http     = require('http');
 connect  = require('connect');
 app      = connect();
 dispatch = require('dispatch');
+send     = require('send');
 
 app.use(connect.static(__dirname + '/images'));
+app.use(connect.static(__dirname + '/javascripts'));
 
 app.use(dispatch({
   'GET /' : function(req, res, next) {
@@ -23,6 +25,11 @@ app.use(dispatch({
   }
 }));
 
+app.use(dispatch({
+  'GET /app.js' : function(req, res, next) {
+    send(req, 'javascripts/app.js').pipe(res);
+  }
+}));
 
 template = fs.readFileSync('dashboard.html');
 function renderUI(cb) {
