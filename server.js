@@ -7,7 +7,7 @@ dispatch = require('dispatch');
 send     = require('send');
 
 app.use(connect.static(__dirname + '/images'));
-app.use(connect.static(__dirname + '/javascripts'));
+app.use(connect.static(__dirname + '/client'));
 
 app.use(dispatch({
   'GET /' : function(req, res, next) {
@@ -80,10 +80,10 @@ css = (function() {
 
 js = (function() {
   var allJs = '';
-  var files = ['javascripts/jquery.min.js',
-               'javascripts/underscore.js',
-               'javascripts/backbone.js',
-               'javascripts/templates.js',
+  var files = ['client/jquery.min.js',
+               'client/underscore.js',
+               'client/backbone.js',
+               'client/templates.js',
                'client.js'];
   for (var i in files) {
     allJs += fs.readFileSync(files[i], 'utf8');
