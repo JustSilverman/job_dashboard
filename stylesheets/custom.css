@@ -6,6 +6,9 @@
   #733924
 */
 
+.loading {
+  display: none;
+}
 
 .container.row {
   max-width: 80em;
@@ -129,6 +132,10 @@
 .search-card .image {
   margin: auto;
   size: 1.75em;
+}
+
+.no-results {
+  display: none;
 }
 
 

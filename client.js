@@ -1,5 +1,4 @@
-var searchResults = Backbone.View.extend({
-  noResultsMsg: "No results found",
+var SearchResults = Backbone.View.extend({
 
   initialize: function() {
     this.listenTo(this.collection, "reset", this.render);
@@ -9,25 +8,30 @@ var searchResults = Backbone.View.extend({
   render: function() {
     this.clearView();
     if (this.collection.length === 0) {
-      this.$el.append("<div class='search-card'>" + this.noResultsMsg + "</div>");
+      this.renderNoResults();
     } else {
-      for (var i in this.collection.models) {
-        this.renderResult(this.collection.models[i].attributes);
-      }
+      this.renderResults();
     }
     return this;
   },
 
-  renderResult: function(searchResult) {
-    this.$el.append(_.template(searchCard, searchResult));
+  renderResults: function() {
+    for (var i in this.collection.models) {
+      this.$el.append(_.template(searchCard, this.collection.models[i].attributes));
+    }
+  },
+
+  renderNoResults: function() {
+    this.$el.find('.no-results').toggle(true);
   },
 
   clearView: function() {
     this.$el.children('.search-card').remove();
+    this.$el.find('.no-results').toggle(false);
   }
 });
 
-var searchForm = Backbone.View.extend({
+var SearchForm = Backbone.View.extend({
   events: {
     "keyup":  "updateModel",
     "submit": "submitForm"
@@ -38,7 +42,7 @@ var searchForm = Backbone.View.extend({
     this.model.on('change:content', _.debounce(this.fetch.bind(this), 200 ));
   },
 
-  updateModel: function(e) {
+  updateModel: function() {
     this.model.set({content: this.textFieldVal()});
   },
 
@@ -83,9 +87,9 @@ var searchForm = Backbone.View.extend({
 
 $(document).ready(function(){
   var resultsCollection = new Backbone.Collection();
-  var formView = new searchForm({el: $('.al-company-form'),
+  var formView = new SearchForm({el: $('.al-company-form'),
                          collection: resultsCollection});
-  var resultsView = new searchResults({el: $('.al-summary-results'),
+  var resultsView = new SearchResults({el: $('.al-summary-results'),
                                collection: resultsCollection});
 
   $('.loading').hide();
