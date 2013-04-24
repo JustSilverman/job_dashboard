@@ -5,7 +5,9 @@ connect  = require('connect');
 app      = connect();
 dispatch = require('dispatch');
 send     = require('send');
+db       = require('./db');
 
+app.use(connect.bodyParser());
 app.use(connect.static(__dirname + '/images'));
 app.use(connect.static(__dirname + '/client'));
 
@@ -27,6 +29,18 @@ app.use(dispatch({
       // TODO:  API error handling
       if (err !== null) return next(err);
       res.end(data);
+    });
+  }
+}));
+
+app.use(dispatch({
+  'POST /jobs' : function(req, res, next) {
+    res.setHeader('Content-Type', 'text/html');
+    var data = req.body.job;
+    console.log(data);
+    db.saveData(data, function(err, data) {
+      if (err !== null) return next(err);
+      res.end(JSON.stringify(data));
     });
   }
 }));

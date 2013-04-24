@@ -1,5 +1,79 @@
-var SearchResults = Backbone.View.extend({
+$(document).ready(function(){
+  init();
+  $('.loading').hide();
+  $('.loaded').show();
+});
 
+var init = function() {
+  var companiesCollection = new Backbone.Collection();
+  var jobsCollection      = new Backbone.Collection();
+  var searchResultsCollection = new Backbone.Collection();
+  var formView            = new SearchForm({
+                            el: $('.al-company-form'),
+                            collection: searchResultsCollection
+                            });
+  var resultsView         = new SearchResults({
+                            el: $('.al-summary-results'),
+                            collection: searchResultsCollection
+                            });
+  var newJobModel         = new NewJobModel();
+  var jobCreatorView      = new JobCreatorView({
+                              el: $('.add-job'),
+                              model: newJobModel
+                            });
+
+  persistModel = function() {
+    $.ajax({
+      url: jobCreatorView.$el.find('form').attr('action'),
+      method: jobCreatorView.$el.find('form').attr('method'),
+      data: { job: newJobModel.attributes },
+      success: function(data) {
+        jobsCollection.add(data);
+        newJobModel.doneCreating();
+      },
+      error: function(xhr, status, error) {
+        // self.displayError(error);
+      },
+    });
+  }
+
+  newJobModel.on('create', persistModel);
+}
+
+var NewJobModel = Backbone.Model.extend({
+  doneCreating: function(){
+    this.clear();
+    this.trigger('created');
+  }
+})
+
+var JobCreatorView = Backbone.View.extend({
+  events: {
+    "submit .job-form": 'create',
+    "blur   .job-form": 'fieldBlur'
+  },
+
+  initialize: function(){
+    var self = this;
+    self.model.on('change', function(model){
+      _.each(model.changed, function(value, attribute){
+        self.$el.find("[name='" + attribute + "']").val(value);
+      });
+    });
+  },
+
+  create: function(e){
+    e.preventDefault();
+    this.model.trigger('create');
+  },
+
+  fieldBlur: function(e){
+    this.model.set($(e.target).attr('name'), $(e.target).val())
+  }
+
+});
+
+var SearchResults = Backbone.View.extend({
   initialize: function() {
     this.listenTo(this.collection, "reset", this.render);
     this.listenTo(this.collection, "empty", this.clearView);
@@ -82,16 +156,4 @@ var SearchForm = Backbone.View.extend({
   displayError: function(message) {
     this.$el.after("<div>" + message + "</div>");
   },
-});
-
-
-$(document).ready(function(){
-  var resultsCollection = new Backbone.Collection();
-  var formView = new SearchForm({el: $('.al-company-form'),
-                         collection: resultsCollection});
-  var resultsView = new SearchResults({el: $('.al-summary-results'),
-                               collection: resultsCollection});
-
-  $('.loading').hide();
-  $('.loaded').show();
 });
