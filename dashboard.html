@@ -11,29 +11,33 @@
     <div class="loaded">
       <div class="container row">
         <div class="large-4 columns main-column">
-          <div class="column-title companies">
-            COMPANIES
-          </div>
+          <div class="column-title companies">COMPANIES</div>
           <div class="company-list">
           </div>
         </div>
         <div class="large-4 columns main-column">
-          <div class="column-title jobs">
-            JOBS
-          </div>
+          <div class="column-title jobs">JOBS</div>
         </div>
         <div class="large-4 columns main-column">
-          <div class="column-title search">
-            ADD TO MY STASH
-          </div>
+          <div class="column-title search">ADD TO MY STASH</div>
           <form class="al-company-form" method="get" action="/al/companies/search">
             <input class="text-field" type="text"   name="search_terms" placeholder="Search for companies"/>
           </form>
           <div class="al-summary-results">
             <div class='no-results'>No results found</div>
           </div>
+          <div class="add-job">
+            <form class="custom new-job" action="/jobs" method="post">
+              <input class="text-field" type="text" name="company_name" placeholder="Company name"/>
+              <input class="text-field" type="text" name="headline" placeholder="Headline (e.g. Full Stack Developer, Front-end Developer)"/>
+              <input class="text-field" type="text"   name="job_post_url" placeholder="Job post url"/>
+
+              <button class="button" type="submit">Add to stash</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </body>
 </html>
+

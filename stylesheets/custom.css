@@ -138,4 +138,11 @@
   display: none;
 }
 
+button.button {
+  background-color: #fff;
+  color: #733924;
+  border: 2px solid #733924;
+  width: 100%;
+}
+
 
