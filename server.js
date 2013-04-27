@@ -38,7 +38,7 @@ app.use(dispatch({
     res.setHeader('Content-Type', 'text/html');
     var data = req.body.job;
     console.log(data);
-    db.saveData(data, function(err, data) {
+    db.saveJob(data, function(err, data) {
       if (err !== null) return next(err);
       res.end(JSON.stringify(data));
     });

@@ -11,14 +11,18 @@ var client = new pg.Client(conString);
                           pic text,\
                           url text,\
                           angellist_id integer,\
-                          crunchbase_id integer\
+                          crunchbase_id integer,\
+                          created_on date,\
+                          updated_on date\
                         );"
 
   var createJobs      = "CREATE TABLE jobs \
                         ( id SERIAL PRIMARY KEY,\
                           company_name varchar(100) NOT NULL,\
                           headline text,\
-                          url text\
+                          url text,\
+                          created_on date,\
+                          updated_on date\
                         );"
 
 client.connect(function(err){
