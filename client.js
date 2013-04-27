@@ -41,6 +41,12 @@ var init = function() {
 }
 
 var NewJobModel = Backbone.Model.extend({
+  defaults: {
+    'company_name': '',
+    'headline':     '',
+    'url':          ''
+  },
+
   doneCreating: function(){
     this.clear();
     this.trigger('created');
