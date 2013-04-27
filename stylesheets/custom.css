@@ -145,4 +145,27 @@ button.button {
   width: 100%;
 }
 
+/* job card styling */
+.job-card {
+  background-image: url('furley_bg.png');
+  max-width: 60em;
+  padding: 0.2em;
+  margin: 0.5em;
+}
 
+.job-card .headline {
+  display: inline-block;
+  min-height: 3em;
+  margin: auto 0;
+  font-size: 0.65em;
+}
+
+.job-card .headline a {
+  color: #333;
+}
+
+.job-card .company_name {
+  float: right;
+  margin: 1.5em 0.5em 0 0;
+  font-size: 0.75em;
+}
